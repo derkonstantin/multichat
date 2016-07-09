@@ -35,6 +35,8 @@ class Chat_list(tk.Frame):
         self.img[':GG:'] = tk.PhotoImage(file="./img/goodgame.png",width=32, height=32)
         self.img[':TWITCH:'] = tk.PhotoImage(file="./img/twitch.png", width=32, height=32)
 
+
+
         self.row = 0
         self.pipe = pipe
 
@@ -57,11 +59,18 @@ class Chat_list(tk.Frame):
     def _update_chat(self):
         i = 0
         while i < len(self.message_list):
+
             chat, sender, msg = self.parse_msg(self.message_list[i])
             tk.Label(self.frame, image=self.img[chat], width=32, height=32, borderwidth="1", relief="solid").grid(row=self.row, column=0)
-            tk.Label(self.frame, text=sender +' '+ msg).grid(row=self.row, column=1)
+            sender_text = tk.Text(self.frame,  height=1, width = len(sender))
+            sender_text.insert(1.0, sender)
+            sender_text.config(state=tk.DISABLED)
+            sender_text.grid(row=self.row, column=1)
+            tk.Label(self.frame, text= msg).grid(row=self.row, column=2,sticky=tk.W)
             i = i + 1
             self.row = self.row + 1
+
+        self.canvas.yview_scroll(1, 'units')
         self.after(1000, self._check_msg)
 
     # def _update_listbox(self):
