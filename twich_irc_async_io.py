@@ -50,7 +50,7 @@ class IRC_twicth(multiprocessing.Process):
                     sender = self.get_sender(line[0])
                     message = self.get_message(line)
                     #print(':TWITCH: ' + sender + ": " + message)
-                    self.pipe.send(':TWITCH: '+sender + ": " + message)
+                    self.pipe.send(':TWITCH: '+sender + " :" + message)
 
         def pong_send(self, msg):
             self.transport.write(bytes('PONG %s\r\n' % msg, 'UTF-8'))
