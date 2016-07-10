@@ -12,8 +12,8 @@ class MessageGroupBox(QGroupBox):
 
     def contextMenuEvent(self, event):
         menu = QMenu(self)
-        delete = menu.addAction("Delete chat " + self.chat + " from " + self.nick)
-        ban = menu.addAction("ban " + self.nick)
+        deleteaction = menu.addAction("Delete chat " + self.chat + " from " + self.nick)
+        banction = menu.addAction("ban " + self.nick)
         quitaction = menu.addAction("QUIT")
         action = menu.exec_(self.mapToGlobal(event.pos()))
         if action == quitaction:
@@ -112,9 +112,9 @@ class ChatWindow(QWidget):
 
 def getpixmap(chat):
     if chat == ":GG:":
-        return QPixmap("./img/goodgame.png").scaledToWidth(20).scaledToWidth(20)
+        return QPixmap("./img/goodgame.orig.png").scaledToWidth(20).scaledToWidth(20)
     elif chat == ":TWITCH:":
-        return QPixmap("./img/twitch.png").scaledToWidth(20).scaledToWidth(20)
+        return QPixmap("./img/twitch.orig.png").scaledToWidth(20).scaledToWidth(20)
     else:
         return QPixmap().scaledToWidth(20).scaledToWidth(20)
 
